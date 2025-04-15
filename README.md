@@ -200,7 +200,7 @@ speed-up - more than x3 faster compared with CPU-only execution. Here are the in
 
   ```bash
   # using CMake
-  cmake -B build -DWHISPER_COREML=1
+  cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DWHISPER_COREML=1 -DGGML_STATIC=1
   cmake --build build -j --config Release
   ```
 
@@ -318,7 +318,7 @@ First, make sure you have installed `cuda`: https://developer.nvidia.com/cuda-do
 Now build `whisper.cpp` with CUDA support:
 
 ```
-cmake -B build -DGGML_CUDA=1
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_CUDA=1 -DGGML_STATIC=1
 cmake --build build -j --config Release
 ```
 
