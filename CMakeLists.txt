@@ -197,3 +197,7 @@ endif ()
 if (WHISPER_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
+
+if(WIN32)
+  add_compile_options(/wd4819)
+endif()

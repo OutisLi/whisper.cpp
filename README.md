@@ -77,7 +77,7 @@ Now build the [whisper-cli](examples/cli) example and transcribe an audio file l
 
 ```bash
 # build the project
-cmake -B build
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_STATIC=1
 cmake --build build --config Release
 
 # transcribe an audio file
@@ -200,7 +200,7 @@ speed-up - more than x3 faster compared with CPU-only execution. Here are the in
 
   ```bash
   # using CMake
-  cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DWHISPER_COREML=1 -DGGML_STATIC=1
+  cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_STATIC=1 -DWHISPER_COREML=1
   cmake --build build -j --config Release
   ```
 
@@ -318,13 +318,15 @@ First, make sure you have installed `cuda`: https://developer.nvidia.com/cuda-do
 Now build `whisper.cpp` with CUDA support:
 
 ```
-cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_CUDA=1 -DGGML_STATIC=1
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_STATIC=1 -DGGML_CUDA=1
 cmake --build build -j --config Release
 ```
 
-or for newer NVIDIA GPU's (RTX 5000 series):
+or for newer NVIDIA GPU's (RTX 40 series):
 ```
-cmake -B build -DGGML_CUDA=1 -DCMAKE_CUDA_ARCHITECTURES="86"
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_STATIC=1 -DGGML_CUDA=1 -DCMAKE_CUDA_ARCHITECTURES="89"
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_STATIC=1 -DGGML_CUDA=1 -DCMAKE_CUDA_ARCHITECTURES="all"
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_STATIC=1 -DGGML_CUDA=1 -DCMAKE_CUDA_ARCHITECTURES="120;100;90;89;86;80;75;70;61"
 cmake --build build -j --config Release
 ```
 
@@ -334,7 +336,7 @@ First, make sure your graphics card driver provides support for Vulkan API.
 
 Now build `whisper.cpp` with Vulkan support:
 ```
-cmake -B build -DGGML_VULKAN=1
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_STATIC=1 -DGGML_VULKAN=1
 cmake --build build -j --config Release
 ```
 
